@@ -1,0 +1,27 @@
+
+# Apache Server Configuration for Gwanwoo Energy
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  
+  # Ensure .tsx and .ts files are served as javascript modules
+  # This prevents the browser from blocking them due to incorrect MIME types
+  <FilesMatch "\.(ts|tsx)$">
+    Header set Content-Type "application/javascript"
+  </FilesMatch>
+
+  # SPA Routing (Redirect non-file requests to index.html)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Browser Caching for better performance
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
