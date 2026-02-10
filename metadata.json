@@ -1,0 +1,7 @@
+{
+  "name": "관우에너지 (Gwanwoo Energy)",
+  "description": "High-end, professional renewable energy (solar) consulting and construction website with a custom CMS and admin dashboard.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
